@@ -825,7 +825,7 @@ PlayerSettings:
     PS5: 
     QNX: 
     ReservedCFE: 
-    Standalone: 
+    Standalone: ODIN_INSPECTOR;ODIN_INSPECTOR_3
     VisionOS: 
     WebGL: 
     XboxOne: 
