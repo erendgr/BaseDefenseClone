@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Controllers.UI;
 using Enums;
+using Keys;
 using Signals;
 using TMPro;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Managers
         #region Private Variables
 
         private UIPanelController _uiPanelController;
-        //private ScoreDataParams _scoreData;
+        private ScoreDataParams _scoreData;
         
         #endregion
         
@@ -87,9 +88,9 @@ namespace Managers
 
         private void OnSetScoreText()
         {
-            //_scoreData = ScoreSignals.Instance.onScoreData();
-            // moneyText.text = _scoreData.MoneyScore.ToString();
-            // gemText.text = _scoreData.GemScore.ToString();
+            _scoreData = ScoreSignals.Instance.onGetScoreData();
+            moneyText.text = _scoreData.MoneyScore.ToString();
+            gemText.text = _scoreData.GemScore.ToString();
         }
 
         #endregion
