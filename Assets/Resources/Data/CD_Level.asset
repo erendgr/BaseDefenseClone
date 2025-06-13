@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9122ff87554c46b7a6df35c6c494b8b9, type: 3}
+  m_Name: CD_Level
+  m_EditorClassIdentifier: 
+  LevelDatas:
+  - BaseData:
+      BaseRoomData:
+        Rooms:
+        - PayType: 0
+          Cost: 0
+          RoomName: 0
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 300
+        - PayType: 0
+          Cost: 0
+          RoomName: 1
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 300
+        - PayType: 0
+          Cost: 400
+          RoomName: 2
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 500
+        - PayType: 0
+          Cost: 300
+          RoomName: 3
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 500
+      MineAreaData:
+        MaxWorkerAmound: 15
+        CurrentWorkerAmound: 0
+        MaxWorkerFromMine: 5
+        StaticStackData:
+          Capacity: 0
+          InitPosition: {x: -1, y: 0.3, z: 1}
+          StackCountX: 5
+          StackCountZ: 5
+          StackOffset: {x: 2, y: 2, z: 2}
+          Delay: 0
+      SoldierAreaData:
+        MaxWorkerAmount: 0
+    FrontYardData:
+      OutsideLevelData:
+      - levels: 0
+        PayType: 1
+        Cost: 200
+      - levels: 1
+        PayType: 1
+        Cost: 300
+      - levels: 2
+        PayType: 1
+        Cost: 400
+      - levels: 3
+        PayType: 1
+        Cost: 500
+      SpawnDatas:
+      - EnemyType: 0
+        EnemyCount: 5
+        CurrentCount: 0
+      - EnemyType: 1
+        EnemyCount: 2
+        CurrentCount: 0
+    SupporterData:
+      AmmoWorkerBuyData:
+        PayType: 0
+        Cost: 600
+      MoneyWorkerBuyData:
+        PayType: 0
+        Cost: 1000
+  - BaseData:
+      BaseRoomData:
+        Rooms:
+        - PayType: 0
+          Cost: 0
+          RoomName: 0
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 200
+        - PayType: 0
+          Cost: 0
+          RoomName: 1
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 200
+        - PayType: 0
+          Cost: 300
+          RoomName: 2
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 300
+        - PayType: 0
+          Cost: 300
+          RoomName: 3
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 300
+        - PayType: 0
+          Cost: 400
+          RoomName: 4
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 400
+        - PayType: 0
+          Cost: 400
+          RoomName: 5
+          Isbase: 0
+          buyableTurretData:
+            PayType: 0
+            Cost: 400
+      MineAreaData:
+        MaxWorkerAmound: 15
+        CurrentWorkerAmound: 0
+        MaxWorkerFromMine: 5
+        StaticStackData:
+          Capacity: 0
+          InitPosition: {x: -1, y: 0.3, z: 1}
+          StackCountX: 5
+          StackCountZ: 5
+          StackOffset: {x: 2, y: 2, z: 2}
+          Delay: 0
+      SoldierAreaData:
+        MaxWorkerAmount: 4
+    FrontYardData:
+      OutsideLevelData:
+      - levels: 0
+        PayType: 1
+        Cost: 100
+      - levels: 1
+        PayType: 1
+        Cost: 200
+      - levels: 2
+        PayType: 1
+        Cost: 300
+      - levels: 3
+        PayType: 1
+        Cost: 400
+      - levels: 4
+        PayType: 1
+        Cost: 500
+      SpawnDatas:
+      - EnemyType: 0
+        EnemyCount: 8
+        CurrentCount: 0
+      - EnemyType: 1
+        EnemyCount: 3
+        CurrentCount: 0
+    SupporterData:
+      AmmoWorkerBuyData:
+        PayType: 0
+        Cost: 500
+      MoneyWorkerBuyData:
+        PayType: 0
+        Cost: 1000
