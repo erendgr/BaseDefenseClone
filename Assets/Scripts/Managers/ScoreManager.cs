@@ -29,14 +29,14 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            SaveSignals.Instance.onSaveScoreData += OnGetSaveScoreData;
+            SaveSignals.Instance.onGetSavedScoreData += OnGetSaveScoreData;
             ScoreSignals.Instance.onGetScoreData += OnGetScoreData;
             ScoreSignals.Instance.onSetScore += OnSetScore;
         }
 
         private void UnsubscribeEvents()
         {
-            SaveSignals.Instance.onSaveScoreData -= OnGetSaveScoreData;
+            SaveSignals.Instance.onGetSavedScoreData -= OnGetSaveScoreData;
             ScoreSignals.Instance.onGetScoreData -= OnGetScoreData;
             ScoreSignals.Instance.onSetScore -= OnSetScore;
         }
