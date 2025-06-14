@@ -40,18 +40,18 @@ namespace Managers
         {
             InputSignals.Instance.onInputTaken += OnEnableInput;
             InputSignals.Instance.onInputReleased += OnDisableInput;
-            // CoreGameSignals.Instance.onPlay += OnPlay;
-            // CoreGameSignals.Instance.onReset += OnReset;
-            // CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
-            // LevelSignals.Instance.onNextLevel += OnNextLevel;
+            CoreGameSignals.Instance.onPlay += OnPlay;
+            CoreGameSignals.Instance.onReset += OnReset;
+            //CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
+            //LevelSignals.Instance.onNextLevel += OnNextLevel;
         }
 
         private void UnsubscribeEvents()
         {
             InputSignals.Instance.onInputTaken -= OnEnableInput;
             InputSignals.Instance.onInputReleased -= OnDisableInput;
-            // CoreGameSignals.Instance.onPlay -= OnPlay;
-            // CoreGameSignals.Instance.onReset -= OnReset;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
+            CoreGameSignals.Instance.onReset -= OnReset;
             // CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             // LevelSignals.Instance.onNextLevel += OnNextLevel;
         }

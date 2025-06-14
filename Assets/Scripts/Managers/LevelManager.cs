@@ -18,7 +18,7 @@ namespace Managers
         #region Private Variables
 
         private int _data;
-        private int _levelID;
+        private int _levelID = 1;
         private LevelLoaderCommand _levelLoader;
         private ClearActiveLevelCommand _levelClearer;
 
@@ -79,8 +79,8 @@ namespace Managers
 
         private void OnInitializeLevel()
         {
-            int newLevelData = GetLevelCount();
-            _levelLoader.InitializeLevel(newLevelData, levelHolder.transform);
+            //int newLevelData = GetLevelCount();
+            _levelLoader.InitializeLevel(1, levelHolder.transform);
         }
 
         private void OnClearActiveLevel()
