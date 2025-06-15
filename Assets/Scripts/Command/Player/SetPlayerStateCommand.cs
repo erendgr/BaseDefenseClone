@@ -21,12 +21,12 @@ namespace Command.Player
         #endregion
 
         public SetPlayerStateCommand(ref PlayerManager manager, ref PlayerMovementController movementController,
-            ref PlayerAnimationController animationController/*, ref PlayerHealthController healthController*/)
+            ref PlayerAnimationController animationController, ref PlayerHealthController healthController)
         {
             _manager = manager;
             _movementController = movementController;
             _animationController = animationController;
-            //_healthController = healthController;
+            _healthController = healthController;
         }
 
         public void Execute(PlayerStates playerState, PlayerAnimState weaponAnimState)
@@ -36,12 +36,12 @@ namespace Command.Player
                 case PlayerStates.Inside:
                     _animationController.SetBoolAnimState(PlayerAnimState.BaseState, true);
                     _animationController.SetBoolAnimState(weaponAnimState, false);
-                    //_healthController.PlayerInBase(true);
+                    _healthController.PlayerInBase(true);
                     break;
                 case PlayerStates.Outside:
                     _animationController.SetBoolAnimState(PlayerAnimState.BaseState, false);
                     _animationController.SetBoolAnimState(weaponAnimState, true);
-                    //_healthController.PlayerInBase(false);
+                    _healthController.PlayerInBase(false);
                     break;
                 case PlayerStates.Attack:
                     break;

@@ -46,7 +46,7 @@ namespace Managers
 
             _setIdleInputValuesCommand = new SetIdleInputValuesCommand(ref movementController, ref animationController);
             _setPlayerStateCommand = new SetPlayerStateCommand(ref manager, ref movementController,
-                ref animationController /*, ref playerHealthController*/);
+                ref animationController , ref healthController);
         }
 
         private PlayerData GetPlayerData() => Resources.Load<CD_Player>(PlayerDataPath).Data;
@@ -92,7 +92,7 @@ namespace Managers
         private void Start()
         {
             CoreGameSignals.Instance.onSetPlayerPosition?.Invoke(transform);
-            //PlayerHealthController.GetHealth(_data.PlayerHealth);
+            healthController.GetHealth(_data.PlayerHealth);
         }
 
         private void OnPlay()
@@ -114,7 +114,7 @@ namespace Managers
 
         private void OnTakeDamage(int value)
         {
-            //playerHealthController.TakeDamage(value);
+            healthController.TakeDamage(value);
         }
 
         private void OnPlayerHasTarget(bool value)
