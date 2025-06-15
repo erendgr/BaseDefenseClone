@@ -47,7 +47,7 @@ namespace Managers
             CoreGameSignals.Instance.onPlay += OnPlay;
             UISignals.Instance.onOpenPanel += OnOpenPanel;
             UISignals.Instance.onClosePanel += OnClosePanel;
-            // ScoreSignals.Instance.onSetScoreToUI += OnSetScoreText;
+            ScoreSignals.Instance.onSetScoreToUI += OnSetScoreText;
         }
         
         private void UnsubscribeEvents()
@@ -55,7 +55,7 @@ namespace Managers
             CoreGameSignals.Instance.onPlay -= OnPlay;
             UISignals.Instance.onOpenPanel -= OnOpenPanel;
             UISignals.Instance.onClosePanel -= OnClosePanel;
-            // ScoreSignals.Instance.onSetScoreToUI -= OnSetScoreText;
+            ScoreSignals.Instance.onSetScoreToUI -= OnSetScoreText;
         }
 
         private void OnDisable()
