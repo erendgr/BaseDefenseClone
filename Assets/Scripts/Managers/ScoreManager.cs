@@ -89,6 +89,7 @@ namespace Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(scoreType), scoreType, null);
             }
+            ScoreSignals.Instance.onSetScoreToUI?.Invoke();
         }
 
         #endregion
