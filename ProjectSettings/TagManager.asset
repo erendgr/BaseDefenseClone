@@ -2,8 +2,21 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - BarrierOutSide
+  - TurretAmmoArea
+  - BuyArea
+  - TurretAttackRadius
+  - AmmoReloadArea
+  - Mine
+  - BarrierInSide
+  - GemHolder
+  - WeaponAttackRadius
+  - SoldierBarrack
+  - Hostage
+  - MoneyWorker
+  - Soldier
   layers:
   - Default
   - TransparentFX
@@ -11,7 +24,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PlayerOutSideLayer
   - 
   - 
   - 
@@ -50,27 +63,3 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
