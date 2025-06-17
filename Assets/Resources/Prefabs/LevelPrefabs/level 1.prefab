@@ -48,25 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: 2
   area: {fileID: 324144695625167909}
-  fencles: {fileID: 5261341988899492964}
+  fences: {fileID: 5261341988899492964}
   invisibleWall: {fileID: 0}
   tmp: {fileID: 2352840964881897092}
-  _data:
-    BaseRoomData:
-      Rooms: []
-    MineAreaData:
-      MaxWorkerAmound: 0
-      CurrentWorkerAmound: 0
-      MaxWorkerFromMine: 0
-      StaticStackData:
-        Capacity: 0
-        InitPosition: {x: 0, y: 0, z: 0}
-        StackCountX: 0
-        StackCountZ: 0
-        StackOffset: {x: 0, y: 0, z: 0}
-        Delay: 0
-    SoldierAreaData:
-      MaxWorkerAmount: 0
 --- !u!1 &7378283763535869
 GameObject:
   m_ObjectHideFlags: 0
@@ -9545,25 +9529,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: 4
   area: {fileID: 456634477256550529}
-  fencles: {fileID: 1790461145472675625}
+  fences: {fileID: 1790461145472675625}
   invisibleWall: {fileID: 0}
   tmp: {fileID: 917183066424333581}
-  _data:
-    BaseRoomData:
-      Rooms: []
-    MineAreaData:
-      MaxWorkerAmound: 0
-      CurrentWorkerAmound: 0
-      MaxWorkerFromMine: 0
-      StaticStackData:
-        Capacity: 0
-        InitPosition: {x: 0, y: 0, z: 0}
-        StackCountX: 0
-        StackCountZ: 0
-        StackOffset: {x: 0, y: 0, z: 0}
-        Delay: 0
-    SoldierAreaData:
-      MaxWorkerAmount: 0
 --- !u!1 &913013098020414506
 GameObject:
   m_ObjectHideFlags: 0
@@ -37648,6 +37616,7 @@ GameObject:
   - component: {fileID: 4481573525000360524}
   - component: {fileID: 7553844483577645425}
   - component: {fileID: 7863717161158461975}
+  - component: {fileID: 8699346395711120852}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Player
@@ -37733,6 +37702,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 3778053735386312425}
+--- !u!114 &8699346395711120852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3887277005870210246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be608fc43f244159e896fa939cd3ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnable: 1
+  stackManager: {fileID: 4566975549639483303}
 --- !u!1 &3892605930589977882
 GameObject:
   m_ObjectHideFlags: 0
@@ -50758,6 +50741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3420520687633434422}
+  - component: {fileID: 4566975549639483303}
   m_Layer: 0
   m_Name: Stack
   m_TagString: Untagged
@@ -50780,6 +50764,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2751417368016020504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4566975549639483303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367366656672999482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1858df23ff7a4047b32b63f3b4deefb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stackHolder: {fileID: 373166540799881781}
 --- !u!1 &5374470967082791765
 GameObject:
   m_ObjectHideFlags: 0
@@ -71239,6 +71236,7 @@ GameObject:
   - component: {fileID: 3120659159887497892}
   - component: {fileID: 7513298928367047383}
   - component: {fileID: 4504884484257235361}
+  - component: {fileID: 2719348712351528840}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -71326,6 +71324,34 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 21442866e006655479601f889444f1ea, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &2719348712351528840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711638832328348301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b85dc34894442b4b76cc7f252463b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    BaseRoomData:
+      Rooms: []
+    MineAreaData:
+      MaxWorkerAmound: 0
+      CurrentWorkerAmound: 0
+      MaxWorkerFromMine: 0
+      StaticStackData:
+        Capacity: 0
+        InitPosition: {x: 0, y: 0, z: 0}
+        StackCountX: 0
+        StackCountZ: 0
+        StackOffset: {x: 0, y: 0, z: 0}
+        Delay: 0
+    SoldierAreaData:
+      MaxWorkerAmount: 0
 --- !u!1 &7720138810070493284
 GameObject:
   m_ObjectHideFlags: 0
@@ -77783,6 +77809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161829031927647972}
+  - component: {fileID: 6356063551280938040}
   m_Layer: 0
   m_Name: TurretManager
   m_TagString: Untagged
@@ -77808,6 +77835,22 @@ Transform:
   - {fileID: 1775942832212622641}
   m_Father: {fileID: 8822575267655937648}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &6356063551280938040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319896949244598902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7a308350974397bc36e03868705186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretName: 0
+  tmp: {fileID: 7863069401570789441}
+  turretManager: {fileID: 0}
+  go: {fileID: 232624007446666710}
 --- !u!1 &8323511111679984684
 GameObject:
   m_ObjectHideFlags: 0
@@ -77887,25 +77930,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: 3
   area: {fileID: 1649094801014590591}
-  fencles: {fileID: 2904950387069037985}
+  fences: {fileID: 2904950387069037985}
   invisibleWall: {fileID: 0}
   tmp: {fileID: 4988088086775935657}
-  _data:
-    BaseRoomData:
-      Rooms: []
-    MineAreaData:
-      MaxWorkerAmound: 0
-      CurrentWorkerAmound: 0
-      MaxWorkerFromMine: 0
-      StaticStackData:
-        Capacity: 0
-        InitPosition: {x: 0, y: 0, z: 0}
-        StackCountX: 0
-        StackCountZ: 0
-        StackOffset: {x: 0, y: 0, z: 0}
-        Delay: 0
-    SoldierAreaData:
-      MaxWorkerAmount: 0
 --- !u!1 &8324785500912766407
 GameObject:
   m_ObjectHideFlags: 0
@@ -79391,6 +79418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605976232376983657}
   - component: {fileID: 3886407057181924981}
+  - component: {fileID: 3874937550663021770}
   m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
@@ -79434,6 +79462,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9937372, y: 0.5004022, z: 3.0072756}
   m_Center: {x: -0.009451389, y: 0.24979888, z: 0.0006804466}
+--- !u!114 &3874937550663021770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8466545794058385881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec420ae341140a8b04dbec9a5f1a6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 6356063551280938040}
 --- !u!1 &8482516093675887300
 GameObject:
   m_ObjectHideFlags: 0
@@ -83392,25 +83433,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: 5
   area: {fileID: 2785899337216351147}
-  fencles: {fileID: 2436275698497297726}
+  fences: {fileID: 2436275698497297726}
   invisibleWall: {fileID: 0}
   tmp: {fileID: 4349410527423894846}
-  _data:
-    BaseRoomData:
-      Rooms: []
-    MineAreaData:
-      MaxWorkerAmound: 0
-      CurrentWorkerAmound: 0
-      MaxWorkerFromMine: 0
-      StaticStackData:
-        Capacity: 0
-        InitPosition: {x: 0, y: 0, z: 0}
-        StackCountX: 0
-        StackCountZ: 0
-        StackOffset: {x: 0, y: 0, z: 0}
-        Delay: 0
-    SoldierAreaData:
-      MaxWorkerAmount: 0
 --- !u!1 &8960736025462198891
 GameObject:
   m_ObjectHideFlags: 0
