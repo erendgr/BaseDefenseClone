@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Datas.ValueObjects
+namespace Datas.ValueObjects.Player
 {
     [Serializable]
     public class StackData

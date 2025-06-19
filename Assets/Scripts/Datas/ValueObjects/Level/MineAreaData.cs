@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-
-namespace Datas.ValueObjects
+namespace Datas.ValueObjects.Level
 {
     [Serializable]
     public class MineAreaData
