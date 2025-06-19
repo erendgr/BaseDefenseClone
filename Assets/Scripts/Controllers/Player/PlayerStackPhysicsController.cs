@@ -1,4 +1,5 @@
 ﻿using Managers;
+using Signals;
 using UnityEngine;
 
 namespace Controllers.Player
@@ -49,7 +50,7 @@ namespace Controllers.Player
 
             if (other.CompareTag(_turretAmmoArea))
             {
-                // stackManager.InteractTurretAmmoArea(other.gameObject);
+                stackManager.InteractTurretAmmoArea(other.gameObject);
             }
         }
 
@@ -62,8 +63,8 @@ namespace Controllers.Player
 
             if (other.CompareTag(_turretAmmoArea))
             {
-                // StackSignals.Instance.onDecreseStackHolder?.Invoke(other.gameObject);
-                // stackManager.CheckAmmoStack();
+                StackSignals.Instance.onDecreseStackHolder?.Invoke(other.gameObject);
+                stackManager.CheckAmmoStack();
             }
         }
     }
