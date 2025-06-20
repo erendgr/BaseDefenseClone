@@ -18,3 +18,8 @@ MonoBehaviour:
       Amount: 50
       Prefab: {fileID: 5495938375531215040, guid: 45775c9401a6a2244aa8711639ad2dd9, type: 3}
       Type: 3
+  - Key: 1
+    Value:
+      Amount: 20
+      Prefab: {fileID: 5135668884997208679, guid: e68fbe9e8c452a345856174fae009bcd, type: 3}
+      Type: 1

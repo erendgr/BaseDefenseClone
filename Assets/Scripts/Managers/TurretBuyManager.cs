@@ -20,7 +20,6 @@ namespace Managers
         [SerializeField] private TurretNameEnum turretName;
         [SerializeField] private TextMeshPro tmp;
         [SerializeField] private TurretManager turretManager;
-        [SerializeField] private GameObject go;
         
         #endregion
 
@@ -43,9 +42,7 @@ namespace Managers
                 _remainingAmount = _buyableTurretData.Cost - _payedAmount;
                 if (_remainingAmount <= 0)
                 {
-                    //for test
-                    go.SetActive(true);
-                    //turretManager.SetSoldier();
+                    turretManager.ActivateSoldier();
                     _textParentGameObject.SetActive(false);
                 }
                 else

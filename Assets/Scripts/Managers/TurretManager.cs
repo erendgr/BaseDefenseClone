@@ -119,5 +119,73 @@ namespace Managers
         }
 
         #endregion
+
+        public void StartAttack()
+        {
+            switch (_turretState)
+            {
+                case TurretStateEnum.WithBot:
+                    movementController.LockTarget(_ammoStack.Count != 0);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            StartCoroutine(Attack());
+        }
+
+        private IEnumerator Attack()
+        {
+            WaitForSeconds wait = new WaitForSeconds(_attackDelay);
+            yield return wait;
+
+            while (EnemyList.Count > 0)
+            {
+                if (_ammoStack.Count == 0) yield break;
+                var closestDistance = float.MaxValue;
+                foreach (var enemy in EnemyList)
+                {
+                    var enemyTransform = enemy.transform;
+                    var distance = Vector3.Distance(transform.position, enemyTransform.position);
+                    if (!(distance < closestDistance)) continue;
+                    closestDistance = distance;
+                    _targetEnemy = enemy;
+                }
+
+                Target = _targetEnemy;
+                Fire();
+
+                yield return wait;
+            }
+
+            StopAttack();
+        }
+
+        private void Fire()
+        {
+            _ammoPrefab = PoolSignals.Instance.onDequeuePoolableGameObject(PoolType.Ammo);
+            _ammoPrefab.GetComponent<AmmoPhysicsController>().SetAddForce(transform.forward * 20);
+            _ammoPrefab.transform.position = barrelPoint.transform.position;
+            _ammoPrefab.transform.rotation = transform.rotation;
+            _ammoAmount++;
+            if (_ammoAmount != 4) return;
+            turretAmmoAreaController.RemoveAmmoFromStack();
+            _ammoAmount = 0;
+        }
+
+        private void StopAttack()
+        {
+            movementController.LockTarget(false);
+            StopAllCoroutines();
+        }
+
+        public void ActivateSoldier()
+        {
+            turretSoldier.SetActive(true);
+            _turretState = TurretStateEnum.WithBot;
+            Debug.Log(_turretState);
+            if (EnemyList.Count <= 0) return;
+            StartCoroutine(Attack());
+        }
     }
 }

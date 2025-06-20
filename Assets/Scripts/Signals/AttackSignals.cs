@@ -10,5 +10,6 @@ namespace Signals
         public UnityAction<int> onDamageToPlayer = delegate { };
         public UnityAction<bool> onPlayerHasTarget = delegate { };
         public Func<GameObject> onGetPlayerTarget = delegate { return default; };
+        public Func<int> onGetAmmoDamage = delegate { return 0;};
     }
 }
