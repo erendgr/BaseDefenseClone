@@ -8,6 +8,6 @@ namespace Signals
     public class StackSignals : MonoSingleton<StackSignals>
     {
         public UnityAction<GameObject, List<GameObject>> onInteractStackHolder = delegate { };
-        public UnityAction<GameObject> onDecreseStackHolder = delegate { };
+        public UnityAction<GameObject> onDecreaseStackHolder = delegate { };
     }
 }

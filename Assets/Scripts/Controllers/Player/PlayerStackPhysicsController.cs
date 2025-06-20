@@ -63,7 +63,7 @@ namespace Controllers.Player
 
             if (other.CompareTag(_turretAmmoArea))
             {
-                StackSignals.Instance.onDecreseStackHolder?.Invoke(other.gameObject);
+                StackSignals.Instance.onDecreaseStackHolder?.Invoke(other.gameObject);
                 stackManager.CheckAmmoStack();
             }
         }

@@ -13,15 +13,26 @@ namespace Managers
 {
     public class PlayerStackManager : MonoBehaviour
     {
+        #region Self Variables
+
+        #region Serialized Variables
+
+        [SerializeField] private GameObject stackHolder;
+
+        #endregion
+
+        #region Private Variables
+
         private StackType _stackType;
+        private Vector3 _stackPosition;
         private StackData _ammoStackData;
         private List<GameObject> _stackList = new();
-        private Vector3 _stackPosition;
         private AddItemToPlayerStackCommand _addItemToPlayerStackCommand;
         private GetPlayerStackItemPosCommand _ammoStackItemPosCommand;
 
+        #endregion
 
-        [SerializeField] private GameObject stackHolder;
+        #endregion
 
         private void Awake()
         {
@@ -65,7 +76,6 @@ namespace Managers
                 StackSignals.Instance.onInteractStackHolder?.Invoke(ammoArea, _stackList);
             }
         }
-
 
         public void CheckAmmoStack()
         {
