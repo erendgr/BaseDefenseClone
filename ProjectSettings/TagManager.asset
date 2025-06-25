@@ -17,6 +17,11 @@ TagManager:
   - Hostage
   - MoneyWorker
   - Soldier
+  - TurretAmmo
+  - Money
+  - Enemy
+  - Bullet
+  - SoldierBullet
   layers:
   - Default
   - TransparentFX
