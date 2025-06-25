@@ -32,11 +32,13 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
     - PPv2URPConverters
+    - AYellowpaper.SerializedCollections
     - ToonyColorsPro.Demo.Editor
     - MK.Toon
     - ToonyColorsPro.Editor
     - ToonyColorsPro2.Demo
     - MK.Toon.Editor
+    - AYellowpaper.SerializedCollections.Editor
     - ToonyColorsPro.Runtime
     - MK.MeshUtility
     - MK.Toon.URP.Editor
