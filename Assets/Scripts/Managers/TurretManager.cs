@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
@@ -8,13 +7,15 @@ using Controllers;
 using Controllers.Turret;
 using Datas.UnityObjects;
 using Datas.ValueObjects;
+using DG.Tweening;
 using Enums;
+using Keys;
 using Signals;
 using UnityEngine;
 
 namespace Managers
 {
-    public class TurretManager : MonoBehaviour
+    public class TurretManager : AttackControllerBase
     {
         #region Self Variables
 
@@ -33,7 +34,7 @@ namespace Managers
         [SerializeField] private GameObject ammoHolder;
         [SerializeField] private GameObject barrelPoint;
         [SerializeField] private TurretAmmoAreaController turretAmmoAreaController;
-        [SerializeField] private GameObject turretSoldier;
+        [SerializeField] private GameObject turretBot;
         [SerializeField] private TurretMovementController movementController;
 
         #endregion
@@ -47,6 +48,7 @@ namespace Managers
         private GameObject _ammoPrefab;
         private int _ammoAmount;
         private GameObject _targetEnemy;
+        private int _ammoBoxLimit;
 
         #endregion
 
@@ -62,7 +64,6 @@ namespace Managers
                 new GetStaticStackItemPosCommand(ref _ammoStack, ref _data.TurretStackData, ref ammoHolder);
             AddToStackCommand =
                 new AddItemToStaticStackCommand(ref _ammoStack, ref _data.TurretStackData, ref ammoHolder);
-            movementController.SetRotateDelay(_data.RotateDelay);
         }
 
         private TurretData GetTurretData() => Resources.Load<CD_Turret>("Data/CD_Turret").TurretData;
@@ -70,13 +71,15 @@ namespace Managers
         private void SendDatasToControllers()
         {
             turretAmmoAreaController.SetData(_data.TurretStackData, _ammoStack);
+            movementController.SetRotateDelay(_data.RotateDelay);
         }
 
         #region Event Subscription
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             SubscribeEvents();
+            base.OnEnable();
         }
 
         private void SubscribeEvents()
@@ -84,7 +87,7 @@ namespace Managers
             AttackSignals.Instance.onGetAmmoDamage += OnGetAmmoDamage;
             StackSignals.Instance.onInteractStackHolder += OnPlayerInteractWithAmmoArea;
             StackSignals.Instance.onDecreaseStackHolder += OnNotInteractPlayerWithAmmoArea;
-            // InputSignals.Instance.onJoystickDragged += OnSetInputValue;
+            InputSignals.Instance.onJoystickDragged += OnSetInputValue;
         }
 
         private void UnsubscribeEvents()
@@ -92,18 +95,19 @@ namespace Managers
             AttackSignals.Instance.onGetAmmoDamage -= OnGetAmmoDamage;
             StackSignals.Instance.onInteractStackHolder -= OnPlayerInteractWithAmmoArea;
             StackSignals.Instance.onDecreaseStackHolder -= OnNotInteractPlayerWithAmmoArea;
-            // InputSignals.Instance.onJoystickDragged -= OnSetInputValue;
+            InputSignals.Instance.onJoystickDragged -= OnSetInputValue;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
             UnsubscribeEvents();
+            base.OnDisable();
         }
 
         #endregion
 
         #region Event Methods
-        
+
         private int OnGetAmmoDamage() => _data.AmmoDamage;
 
         private void OnPlayerInteractWithAmmoArea(GameObject holder, List<GameObject> ammoStack)
@@ -118,47 +122,63 @@ namespace Managers
             turretAmmoAreaController.PlayerNotInteractAmmoArea();
         }
 
+        private void OnSetInputValue(IdleInputParams input)
+        {
+            if (_turretState != TurretStateEnum.WithPlayer) return;
+            movementController.SetInputValue(input);
+        }
+
         #endregion
 
-        public void StartAttack()
+        protected override void ExecuteAttack()
         {
             switch (_turretState)
             {
+                case TurretStateEnum.None:
+                    return;
                 case TurretStateEnum.WithBot:
                     movementController.LockTarget(_ammoStack.Count != 0);
+                    break;
+                case TurretStateEnum.WithPlayer:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            StartCoroutine(Attack());
+            if (_ammoStack.Count == 0) return;
+            Fire();
         }
 
-        private IEnumerator Attack()
+        protected override void HandleNewTarget()
         {
-            WaitForSeconds wait = new WaitForSeconds(_attackDelay);
-            yield return wait;
+            Target = TargetEnemy;
+        }
 
-            while (EnemyList.Count > 0)
+        protected override void StopAttack()
+        {
+            movementController.LockTarget(false);
+        }
+
+        protected override bool TriggerEnter(Collider other)
+        {
+            if (_turretState != TurretStateEnum.None) return false;
+            if (other.CompareTag("Enemy"))
             {
-                if (_ammoStack.Count == 0) yield break;
-                var closestDistance = float.MaxValue;
-                foreach (var enemy in EnemyList)
-                {
-                    var enemyTransform = enemy.transform;
-                    var distance = Vector3.Distance(transform.position, enemyTransform.position);
-                    if (!(distance < closestDistance)) continue;
-                    closestDistance = distance;
-                    _targetEnemy = enemy;
-                }
-
-                Target = _targetEnemy;
-                Fire();
-
-                yield return wait;
+                Enemies.Add(other.gameObject);
             }
 
-            StopAttack();
+            return true;
+        }
+
+        protected override bool TriggerExit(Collider other)
+        {
+            if (_turretState != TurretStateEnum.None) return false;
+            if (other.CompareTag("Enemy"))
+            {
+                Enemies.Remove(other.gameObject);
+            }
+
+            return true;
         }
 
         private void Fire()
@@ -168,24 +188,36 @@ namespace Managers
             _ammoPrefab.transform.position = barrelPoint.transform.position;
             _ammoPrefab.transform.rotation = transform.rotation;
             _ammoAmount++;
-            if (_ammoAmount != 4) return;
+            if (_ammoAmount != _ammoBoxLimit) return;
             turretAmmoAreaController.RemoveAmmoFromStack();
             _ammoAmount = 0;
         }
 
-        private void StopAttack()
-        {
-            movementController.LockTarget(false);
-            StopAllCoroutines();
-        }
-
         public void ActivateSoldier()
         {
-            turretSoldier.SetActive(true);
+            turretBot.SetActive(true);
             _turretState = TurretStateEnum.WithBot;
-            Debug.Log(_turretState);
             if (EnemyList.Count <= 0) return;
             StartCoroutine(Attack());
+        }
+
+        public void InteractPlayerWithTurret(GameObject player)
+        {
+            if (_turretState == TurretStateEnum.WithBot) return;
+            _turretState = TurretStateEnum.WithPlayer;
+            player.transform.SetParent(transform);
+            player.transform.DOLocalMove(turretBot.transform.localPosition, 0.1f).OnComplete(() =>
+            {
+                player.transform.GetChild(0).rotation = transform.rotation;
+                IdleSignals.Instance.onInteractPlayerWithTurret?.Invoke();
+            });
+            AttackCoroutine ??= StartCoroutine(Attack());
+        }
+
+        public void NotInteractPlayerWithTurret()
+        {
+            if (_turretState != TurretStateEnum.WithPlayer) return;
+            _turretState = TurretStateEnum.None;
         }
     }
 }
