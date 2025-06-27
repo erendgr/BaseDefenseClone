@@ -13,13 +13,59 @@ MonoBehaviour:
   m_Name: CD_Pool
   m_EditorClassIdentifier: 
   PoolList:
-  - Key: 3
-    Value:
-      Amount: 50
-      Prefab: {fileID: 5495938375531215040, guid: 45775c9401a6a2244aa8711639ad2dd9, type: 3}
-      Type: 3
-  - Key: 1
-    Value:
-      Amount: 20
-      Prefab: {fileID: 5135668884997208679, guid: e68fbe9e8c452a345856174fae009bcd, type: 3}
-      Type: 1
+    _serializedList:
+    - Key: 0
+      Value:
+        Amount: 200
+        Prefab: {fileID: 5868225309094695828, guid: 0b8193a2379847040ab7423bac05e033, type: 3}
+        Type: 0
+    - Key: 2
+      Value:
+        Amount: 1
+        Prefab: {fileID: 2980977172278769893, guid: 5af2ad45c65c392438653a29acef5c06, type: 3}
+        Type: 2
+    - Key: 1
+      Value:
+        Amount: 20
+        Prefab: {fileID: 5135668884997208679, guid: e68fbe9e8c452a345856174fae009bcd, type: 3}
+        Type: 1
+    - Key: 10
+      Value:
+        Amount: 1
+        Prefab: {fileID: 7057543215104956144, guid: 3a2c398d4b488de4a81841e84a796c71, type: 3}
+        Type: 10
+    - Key: 4
+      Value:
+        Amount: 30
+        Prefab: {fileID: 2118468669246769685, guid: 548ea30083178e54f97faf7b2f6cb4b6, type: 3}
+        Type: 4
+    - Key: 5
+      Value:
+        Amount: 30
+        Prefab: {fileID: 2118468669246769685, guid: 9a8300ac6b95a3248bdc024a55981167, type: 3}
+        Type: 5
+    - Key: 6
+      Value:
+        Amount: 10
+        Prefab: {fileID: 2118468669246769685, guid: 209bbad9d86df4f4c99de0bf63c3a798, type: 3}
+        Type: 6
+    - Key: 7
+      Value:
+        Amount: 1
+        Prefab: {fileID: 0}
+        Type: 0
+    - Key: 8
+      Value:
+        Amount: 1
+        Prefab: {fileID: 0}
+        Type: 0
+    - Key: 9
+      Value:
+        Amount: 1
+        Prefab: {fileID: 0}
+        Type: 0
+    - Key: 3
+      Value:
+        Amount: 100
+        Prefab: {fileID: 5495938375531215040, guid: 45775c9401a6a2244aa8711639ad2dd9, type: 3}
+        Type: 3

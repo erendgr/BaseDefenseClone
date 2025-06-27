@@ -6,5 +6,12 @@ namespace _ObjectPooling.Scripts.Enums
         Ammo,
         Gem,
         AmmoBox,
+        Common,
+        Tank,
+        Hostage,
+        Pistol,
+        M4,
+        Ak47,
+        Bullet,
     }
 }
