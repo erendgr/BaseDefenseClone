@@ -1,5 +1,4 @@
-﻿using System;
-using _ObjectPooling.Scripts.Enums;
+﻿using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
 using Signals;
 using UnityEngine;
@@ -20,16 +19,10 @@ namespace Controllers
 
         private readonly string _enemy = "Enemy";
         private readonly string _turretAttackRadius = "TurretAttackRadius";
-        private readonly string _player = "Player"; // for test
 
         #endregion
 
         #endregion
-
-        private void Awake()
-        {
-            throw new NotImplementedException();
-        }
 
         private void OnDisable()
         {
@@ -43,9 +36,8 @@ namespace Controllers
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(_player))
+            if (other.CompareTag(_enemy))
             {
-                AttackSignals.Instance.onDamageToPlayer?.Invoke(10); // for test 10 damage
                 PoolSignals.Instance.onEnqueuePooledGameObject?.Invoke(gameObject, PoolType.Ammo);
             }
         }
