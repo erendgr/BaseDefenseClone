@@ -30,14 +30,14 @@ TagManager:
   - Water
   - UI
   - PlayerOutSideLayer
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnemyDetectLayer
+  - BarrierLayer
+  - HostageLayer
+  - BulletLayer
+  - EnemyTakeDamage
+  - WeaponsDetectLayer
+  - SoldierDetectLayer
+  - SoldierTakeDamage
   - 
   - 
   - 
