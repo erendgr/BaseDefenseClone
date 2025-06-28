@@ -28,6 +28,8 @@ namespace Managers
         private Transform _currentParent;
         private const string PlayerDataPath = "Data/CD_Player";
         private PlayerStates _playerState;
+        private PlayerAnimState _weaponAnimState;
+        private PlayerAnimState _weaponAttackAnimState;
         private SetIdleInputValuesCommand _setIdleInputValuesCommand;
         private SetPlayerStateCommand _setPlayerStateCommand;
 
@@ -67,7 +69,7 @@ namespace Managers
             InputSignals.Instance.onJoystickDragged += OnSetIdleInputValues;
             AttackSignals.Instance.onDamageToPlayer += OnTakeDamage;
             AttackSignals.Instance.onPlayerHasTarget += OnPlayerHasTarget;
-            //IdleSignals.Instance.OnInteractWithTurret += OnPlayerInTurret;
+            IdleSignals.Instance.onInteractPlayerWithTurret += OnPlayerInTurret;
         }
 
         private void UnsubscribeEvents()
@@ -77,7 +79,7 @@ namespace Managers
             InputSignals.Instance.onJoystickDragged -= OnSetIdleInputValues;
             AttackSignals.Instance.onDamageToPlayer -= OnTakeDamage;
             AttackSignals.Instance.onPlayerHasTarget -= OnPlayerHasTarget;
-            //IdleSignals.Instance.OnInteractWithTurret -= OnPlayerInTurret;
+            IdleSignals.Instance.onInteractPlayerWithTurret -= OnPlayerInTurret;
         }
 
         private void OnDisable()
@@ -117,21 +119,21 @@ namespace Managers
             healthController.TakeDamage(value);
         }
 
-        private void OnPlayerHasTarget(bool value)
+        private void OnPlayerHasTarget(bool hasTarget)
         {
-            // if (hasTarget)
-            // {
-            //     movementController.IsLockTarget(true);
-            //     _weaponAttackAnimState = IdleSignals.Instance.onSelectedWeaponAttackAnimState();
-            //     animationController.SetAnimState(_weaponAttackAnimState);
-            //     _playerState = PlayerStateEnum.LockTarget;
-            // }
-            // else
-            // {
-            //     animationController.SetAnimState(PlayerAnimState.AttackEnd);
-            //     movementController.IsLockTarget(false);
-            //     _playerState = PlayerStateEnum.Outside;
-            // }
+            if (hasTarget)
+            {
+                movementController.IsLockTarget(true);
+                _weaponAttackAnimState = IdleSignals.Instance.onGetSelectedWeaponAttackAnimState();
+                animationController.SetAnimState(_weaponAttackAnimState);
+                _playerState = PlayerStates.Attack;
+            }
+            else
+            {
+                animationController.SetAnimState(PlayerAnimState.AttackEnd);
+                movementController.IsLockTarget(false);
+                _playerState = PlayerStates.Outside;
+            }
         }
 
         private void OnPlayerInTurret()
@@ -157,9 +159,9 @@ namespace Managers
             _playerState = state;
             if (state == PlayerStates.Inside || state == PlayerStates.Death)
             {
-                //_weaponAnimState = IdleSignals.Instance.onSelectedWeaponAnimState();
+                _weaponAnimState = IdleSignals.Instance.onGetSelectedWeaponAnimState();
             }
-            _setPlayerStateCommand.Execute(state, PlayerAnimState.PistolState);
+            _setPlayerStateCommand.Execute(state, _weaponAnimState);
         }
     }
 }

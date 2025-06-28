@@ -11,7 +11,7 @@ namespace Controllers.Player
         #region SerializeField Variables
 
         [SerializeField] private PlayerManager manager;
-        //[SerializeField] private AttackManager attackManager;
+        [SerializeField] private PlayerAttackManager playerAttackManager;
 
         #endregion
 
@@ -44,16 +44,14 @@ namespace Controllers.Player
         {
             gameObject.layer = LayerMask.NameToLayer(_playerOutSideLayer);
             manager.SetPlayerState(PlayerStates.Outside);
-
-            //attackManager.PlayerInteractOutSide();
+            playerAttackManager.PlayerExitBase();
         }
 
         private void BarrierInSide()
         {
             gameObject.layer = LayerMask.NameToLayer(_default);
             manager.SetPlayerState(PlayerStates.Inside);
-
-            //attackManager.OnPlayerInteractBase();
+            playerAttackManager.OnPlayerDied();
         }
     }
 }
