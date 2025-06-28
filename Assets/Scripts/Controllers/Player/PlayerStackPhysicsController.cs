@@ -30,17 +30,17 @@ namespace Controllers.Player
         {
             if (!isEnable) return;
 
-            // if (other.CompareTag(_barrierInSide))
-            // {
-            //     stackManager.InteractBarrierArea();
-            //     return;
-            // }
+            if (other.CompareTag(_barrierInSide))
+            {
+                stackManager.InteractBarrierArea();
+                return;
+            }
 
-            // if (other.CompareTag(_money))
-            // {
-            //     stackManager.InteractMoney(other.gameObject);
-            //     return;
-            // }
+            if (other.CompareTag(_money))
+            {
+                stackManager.InteractMoney(other.gameObject);
+                return;
+            }
 
             if (other.CompareTag(_ammoReloadArea))
             {

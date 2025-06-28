@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
@@ -25,10 +26,15 @@ namespace Managers
 
         private StackType _stackType;
         private Vector3 _stackPosition;
+        private Transform _wareHouseTransform;
         private StackData _ammoStackData;
+        private StackData _moneyStackData;
         private List<GameObject> _stackList = new();
-        private AddItemToPlayerStackCommand _addItemToPlayerStackCommand;
+        private ClearAmmoStackItems _clearAmmoStackItems;
+        private AddMoneyStackToScore _addMoneyStackToScore;
         private GetPlayerStackItemPosCommand _ammoStackItemPosCommand;
+        private GetPlayerStackItemPosCommand _moneyStackItemPosCommand;
+        private AddItemToPlayerStackCommand _addItemToPlayerStackCommand;
 
         #endregion
 
@@ -36,11 +42,18 @@ namespace Managers
 
         private void Awake()
         {
+            _moneyStackData = Resources.Load<CD_Player>("Data/CD_Player").MoneyStackData;
             _ammoStackData = Resources.Load<CD_Player>("Data/CD_Player").AmmoStackData;
-            _ammoStackItemPosCommand =
-                new GetPlayerStackItemPosCommand(ref _stackList, ref _ammoStackData, ref stackHolder);
-            _addItemToPlayerStackCommand =
-                new AddItemToPlayerStackCommand(ref _stackList, ref stackHolder, ref _ammoStackData);
+            _ammoStackItemPosCommand = new GetPlayerStackItemPosCommand(ref _stackList, ref _ammoStackData, ref stackHolder);
+            _moneyStackItemPosCommand = new GetPlayerStackItemPosCommand(ref _stackList, ref _moneyStackData, ref stackHolder);
+            _addItemToPlayerStackCommand = new AddItemToPlayerStackCommand(ref _stackList, ref stackHolder, ref _ammoStackData);
+            _addMoneyStackToScore = new AddMoneyStackToScore(ref _stackList);
+        }
+
+        private void Start()
+        {
+            _wareHouseTransform = IdleSignals.Instance.onGetWareHousePositon();
+            _clearAmmoStackItems = new ClearAmmoStackItems(ref _stackList, _wareHouseTransform);
         }
 
         public void InteractWareHouseArea(Transform ammoArea, bool isTriggerAmmoArea)
@@ -82,6 +95,36 @@ namespace Managers
             if (_stackList.Count == 0)
             {
                 _stackType = StackType.None;
+            }
+        }
+
+        public void InteractMoney(GameObject money)
+        {
+            if (_stackType == StackType.Ammo) return;
+            _stackType = StackType.Money;
+            if (_stackList.Count >= _moneyStackData.Capacity) return;
+            money.GetComponent<BoxCollider>().enabled = false;
+            _stackPosition = _moneyStackItemPosCommand.Execute(_stackPosition);
+            _addItemToPlayerStackCommand.Execute(money, _stackPosition);
+            AIWorkerSignals.Instance.onRemoveMoneyFromList?.Invoke(money);
+        }
+        
+        public void InteractBarrierArea()
+        {
+            switch (_stackType)
+            {
+                case StackType.None:
+                    return;
+                case StackType.Money:
+                    _addMoneyStackToScore.Execute();
+                    _stackType = StackType.None;
+                    return;
+                case StackType.Ammo:
+                    _clearAmmoStackItems.Execute();
+                    _stackType = StackType.None;
+                    return;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

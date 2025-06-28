@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Datas.ValueObjects;
 using Datas.ValueObjects.Player;
 using DG.Tweening;
 using UnityEngine;
@@ -28,9 +27,9 @@ namespace Command.Stack
             _data = stackData;
         }
 
-        public void Execute(GameObject obj, Vector3 position, Transform ammoArea)
+        public void Execute(GameObject obj, Vector3 position, Transform ammoArea = null)
         {
-            obj.transform.position = ammoArea.position;
+            if (ammoArea != null) obj.transform.position = ammoArea.position;
             obj.transform.SetParent(_stackHolder.transform);
             obj.transform.DOLocalMove(position, 1f);
             obj.transform.DOLocalRotate(Vector3.zero, 0.5f);
