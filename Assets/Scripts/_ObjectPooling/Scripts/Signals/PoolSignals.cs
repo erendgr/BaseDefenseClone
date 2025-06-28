@@ -9,6 +9,7 @@ namespace _ObjectPooling.Scripts.Signals
     public class PoolSignals : MonoSingleton<PoolSignals>
     {
         public Func<PoolType, GameObject> onDequeuePoolableGameObject = delegate { return null; };
+        public Func<PoolType, Transform, GameObject> onDequeuePoolableGameObjectWithTransform = delegate { return null; };
         public UnityAction<GameObject, PoolType> onEnqueuePooledGameObject = delegate { };
     }
 }

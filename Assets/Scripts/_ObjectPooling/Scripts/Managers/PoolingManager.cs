@@ -47,7 +47,24 @@ namespace _ObjectPooling.Scripts.Managers
         private void SubscribeEvents()
         {
             PoolSignals.Instance.onDequeuePoolableGameObject += OnDequeuePoolableGameObject;
+            PoolSignals.Instance.onDequeuePoolableGameObjectWithTransform += OnDequeuePoolableGameObjectWithTransform;
             PoolSignals.Instance.onEnqueuePooledGameObject += OnEnqueuePooledGameObject;
+            
+        }
+
+        private GameObject OnDequeuePoolableGameObjectWithTransform(PoolType poolType, Transform transform)
+        {
+            if (!_poolableObjectList.ContainsKey(poolType))
+            {
+                Debug.LogError($"Dictionary does not contain this key: {poolType}...");
+                return null;
+            }
+
+            var deQueuedPoolObject = _poolableObjectList[poolType].Dequeue();
+            deQueuedPoolObject.transform.position = transform.position;
+            if (deQueuedPoolObject.activeSelf) OnDequeuePoolableGameObjectWithTransform(poolType, transform);
+            deQueuedPoolObject.SetActive(true);
+            return deQueuedPoolObject;
         }
 
         private GameObject OnDequeuePoolableGameObject(PoolType type)
