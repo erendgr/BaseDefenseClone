@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5997902241564281081}
   - component: {fileID: 5538092414891000803}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: -3776785513869259439}
   - component: {fileID: 4050376251764277846}
   - component: {fileID: 1696599774026924079}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Ammo
   m_TagString: TurretAmmo
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6930305365008713513}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4048595076606031853, guid: d556f77ace486c5419185e225d80df85, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
