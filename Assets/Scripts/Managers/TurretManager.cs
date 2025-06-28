@@ -18,17 +18,7 @@ namespace Managers
     public class TurretManager : AttackControllerBase
     {
         #region Self Variables
-
-        #region Public Variables
-
-        public List<GameObject> EnemyList;
-        public GameObject Target;
-
-        public GetStaticStackItemPosCommand GetItemPosCommand;
-        public AddItemToStaticStackCommand AddToStackCommand;
-
-        #endregion
-
+        
         #region Serialized Variables
 
         [SerializeField] private GameObject ammoHolder;
@@ -41,14 +31,23 @@ namespace Managers
 
         #region Private Variables
 
-        private List<GameObject> _ammoStack = new();
-        private TurretData _data;
-        private TurretStateEnum _turretState;
-        private float _attackDelay;
-        private GameObject _ammoPrefab;
         private int _ammoAmount;
+        private TurretData _data;
+        private readonly int _ammoBoxLimit = 4;
+        private GameObject _ammoPrefab;
         private GameObject _targetEnemy;
-        private int _ammoBoxLimit;
+        private TurretStateEnum _turretState;
+        private List<GameObject> _ammoStack = new();
+
+        #endregion
+        
+        #region Public Variables
+
+        public List<GameObject> EnemyList;
+        public GameObject Target;
+
+        public GetStaticStackItemPosCommand GetItemPosCommand;
+        public AddItemToStaticStackCommand AddToStackCommand;
 
         #endregion
 
@@ -57,9 +56,10 @@ namespace Managers
         private void Awake()
         {
             _ammoAmount = 0;
+            EnemyList = Enemies;
             _data = GetTurretData();
             SendDatasToControllers();
-            _attackDelay = _data.AttackDelay;
+            AttackDelay = _data.AttackDelay;
             GetItemPosCommand =
                 new GetStaticStackItemPosCommand(ref _ammoStack, ref _data.TurretStackData, ref ammoHolder);
             AddToStackCommand =
