@@ -1,6 +1,5 @@
 ﻿using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
-using Signals;
 using UnityEngine;
 
 namespace Controllers
