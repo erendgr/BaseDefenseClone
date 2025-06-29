@@ -13410,6 +13410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5689388791997870342}
+  - component: {fileID: 3603663860011014859}
   m_Layer: 0
   m_Name: MoneyWorkerBuyArea
   m_TagString: Untagged
@@ -13434,6 +13435,20 @@ Transform:
   - {fileID: 7988447957203967742}
   m_Father: {fileID: 4772184584776653101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3603663860011014859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2260415491731664322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b90814302a4bc6bf389a6fdea6fe17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botPosition: {fileID: 805127072479638956}
+  tmp: {fileID: 4371732515764132124}
 --- !u!1 &2262522587343488789
 GameObject:
   m_ObjectHideFlags: 0
@@ -44527,6 +44542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b85dc34894442b4b76cc7f252463b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wareHouse: {fileID: 9160926444381075170}
+  baseCenter: {fileID: 4428824565924762198}
   _data:
     BaseRoomData:
       Rooms: []
@@ -47063,6 +47080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321648506003719341}
   - component: {fileID: 5617382108137944538}
+  - component: {fileID: 1227223823818562545}
   m_Layer: 0
   m_Name: AmmoWorkerArea
   m_TagString: Untagged
@@ -47110,6 +47128,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.320763, y: 1.4927227, z: 2.3940437}
   m_Center: {x: 0, y: 0.24636137, z: 0}
+--- !u!114 &1227223823818562545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980860833277343568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963e5fd53a70432591a71abdacc1fd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaManager: {fileID: 319418519553094544}
 --- !u!1 &7983401365722537677
 GameObject:
   m_ObjectHideFlags: 0
@@ -51921,6 +51952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7475805570054900973}
+  - component: {fileID: 4133292206160076140}
   m_Layer: 0
   m_Name: WorkerBuyManager
   m_TagString: Untagged
@@ -51943,6 +51975,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4772184584776653101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4133292206160076140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717297892744440988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79001f0cef4244639e4f3a6dfa55a17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8725228643087889480
 GameObject:
   m_ObjectHideFlags: 0
@@ -52131,6 +52175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440140451085309269}
+  - component: {fileID: 319418519553094544}
   m_Layer: 0
   m_Name: AmmoWorkerBuyArea
   m_TagString: Untagged
@@ -52155,6 +52200,20 @@ Transform:
   - {fileID: 321648506003719341}
   m_Father: {fileID: 4772184584776653101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319418519553094544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8818842614546284024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40d7592143b489689bcb2d6a4d32338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botPosition: {fileID: 6257967689443120390}
+  tmp: {fileID: 1560215731144955528}
 --- !u!1 &8845694808455538563
 GameObject:
   m_ObjectHideFlags: 0
@@ -53453,6 +53512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7988447957203967742}
   - component: {fileID: 1575020826229551301}
+  - component: {fileID: 8366408607454620175}
   m_Layer: 0
   m_Name: MoneyWorkerArea
   m_TagString: Untagged
@@ -53500,6 +53560,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.320763, y: 1.4927227, z: 2.3940437}
   m_Center: {x: 0, y: 0.24636137, z: 0}
+--- !u!114 &8366408607454620175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113044282271953263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b3640a30bb4715b2cdacecbb701bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaManager: {fileID: 3603663860011014859}
 --- !u!1 &9129953301756125220
 GameObject:
   m_ObjectHideFlags: 0

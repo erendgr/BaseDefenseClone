@@ -13,5 +13,7 @@ namespace _ObjectPooling.Scripts.Enums
         M4,
         Ak47,
         Bullet,
+        AmmoWorker,
+        MoneyWorker,
     }
 }

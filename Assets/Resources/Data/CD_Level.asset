@@ -78,13 +78,13 @@ MonoBehaviour:
       - EnemyType: 1
         EnemyCount: 2
         CurrentCount: 0
-    SupporterData:
+    WorkersData:
       AmmoWorkerBuyData:
         PayType: 0
-        Cost: 600
+        Cost: 0
       MoneyWorkerBuyData:
         PayType: 0
-        Cost: 1000
+        Cost: 0
   - BaseData:
       BaseRoomData:
         Rooms:
@@ -167,10 +167,10 @@ MonoBehaviour:
       - EnemyType: 1
         EnemyCount: 3
         CurrentCount: 0
-    SupporterData:
+    WorkersData:
       AmmoWorkerBuyData:
         PayType: 0
         Cost: 500
       MoneyWorkerBuyData:
         PayType: 0
-        Cost: 1000
+        Cost: 500
