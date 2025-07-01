@@ -15,5 +15,8 @@ namespace _ObjectPooling.Scripts.Enums
         Bullet,
         AmmoWorker,
         MoneyWorker,
+        Soldier,
+        SoldierBullet,
+        Miner,
     }
 }

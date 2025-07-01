@@ -21,7 +21,7 @@ MonoBehaviour:
         Type: 0
     - Key: 2
       Value:
-        Amount: 1
+        Amount: 40
         Prefab: {fileID: 2980977172278769893, guid: 5af2ad45c65c392438653a29acef5c06, type: 3}
         Type: 2
     - Key: 1
@@ -79,3 +79,18 @@ MonoBehaviour:
         Amount: 1
         Prefab: {fileID: 2118468669246769685, guid: bf814475153620247bc7bfd30edb7ba9, type: 3}
         Type: 12
+    - Key: 13
+      Value:
+        Amount: 5
+        Prefab: {fileID: 2390034795183758345, guid: 1975667493e44fd4a9f99641ade56787, type: 3}
+        Type: 13
+    - Key: 14
+      Value:
+        Amount: 30
+        Prefab: {fileID: 5135668884997208679, guid: e61b845c84478e84abbd5a9882ce7037, type: 3}
+        Type: 14
+    - Key: 15
+      Value:
+        Amount: 15
+        Prefab: {fileID: 2118468669246769685, guid: f98887a183aeab5418aa471637ad70b8, type: 3}
+        Type: 15
