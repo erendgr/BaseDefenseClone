@@ -5,6 +5,7 @@ using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
 using Datas.UnityObjects;
 using Datas.ValueObjects;
+using Datas.ValueObjects.Level;
 using Enums;
 using Signals;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Managers
 
         #region Private Variables
 
+        private int _spawnedHostage;
         private int _currentLevel;
         private int _hostageCache;
         private float _enemyTimer;
@@ -159,7 +161,7 @@ namespace Managers
         {
             RandomEnemy();
             PoolType poolType = (PoolType) Enum.Parse(typeof(PoolType), _randomSpawnDataCache.EnemyType.ToString());
-            var enemy = PoolSignals.Instance.onDequeuePoolableGameObjectWithTransform(poolType,
+            PoolSignals.Instance.onDequeuePoolableGOWithTransform(poolType,
                 enemySpawnPoints[Random.Range(0, enemySpawnPoints.Count)].transform);
         }
 
@@ -168,7 +170,7 @@ namespace Managers
             if (_hostageSpawnControlList[_hostageCache] == null)
             {
                 _hostageSpawnControlList[_hostageCache] =
-                    PoolSignals.Instance.onDequeuePoolableGameObjectWithTransform(PoolType.Hostage,
+                    PoolSignals.Instance.onDequeuePoolableGOWithTransform(PoolType.Hostage,
                         hostageSpawnPoint[_hostageCache].transform);
                 return;
             }

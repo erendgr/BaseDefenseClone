@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Datas.UnityObjects;
 using Datas.ValueObjects;
+using Datas.ValueObjects.Level;
 using Enums;
 using Signals;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Managers
             OutSideSignals.Instance.onGetOutsideData += OnGetOutsideData;
             OutSideSignals.Instance.onGetPayedStageData += OnGetOutsideStagePayedAmount;
             OutSideSignals.Instance.onOutsideBuyedItems += OnSetPayedStageData;
-            SaveSignals.Instance.onGetSavedOutsideData += OnGetSavedOutsideData;
+            SaveSignals.Instance.onGetOutsideData += OnGetOutsideData;
         }
 
         private void UnsubscribeEvents()
@@ -42,7 +43,7 @@ namespace Managers
             OutSideSignals.Instance.onGetOutsideData -= OnGetOutsideData;
             OutSideSignals.Instance.onGetPayedStageData -= OnGetOutsideStagePayedAmount;
             OutSideSignals.Instance.onOutsideBuyedItems -= OnSetPayedStageData;
-            SaveSignals.Instance.onGetSavedOutsideData -= OnGetSavedOutsideData;
+            SaveSignals.Instance.onGetOutsideData -= OnGetOutsideData;
         }
 
         private void OnDisable()
@@ -54,7 +55,7 @@ namespace Managers
 
         private void Start()
         {
-            OutSideSignals.Instance.onGettedOutSideData?.Invoke();
+            OutSideSignals.Instance.onLoadedOutSideData?.Invoke();
         }
 
         private void GetReferences()
@@ -80,10 +81,11 @@ namespace Managers
         
         private void OutsideDataSave()
         {
+            SaveSignals.Instance.onScoreSave?.Invoke();
             SaveSignals.Instance.onOutSideDataSave?.Invoke();
         }
 
-        private Dictionary<OutSideStateLevels, int> OnGetSavedOutsideData() => _payedStageAreas;
+        private Dictionary<OutSideStateLevels, int> OnGetOutsideData() => _payedStageAreas;
         
     }
 }
