@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
+using _StateMachine;
 using Abstract;
 using Datas.UnityObjects;
 using Datas.ValueObjects;
@@ -43,6 +45,7 @@ namespace AIBrain
         private Coroutine _attack;
         private int _health;
         private float _timer;
+        private StateMachine<EnemyStates, EnemyBaseState> _stateMachine;
 
         #region Status
 
@@ -64,12 +67,17 @@ namespace AIBrain
         {
             var brain = this;
             _data = Resources.Load<CD_AI>("Data/Cd_AI").EnemyAIData.EnemyTypeDatas[enemyType];
-            _enemyDeath = new EnemyDeath(ref brain, ref agent, ref _data);
-            _moveToTurret = new MoveToTurret(ref brain, ref agent, ref _data);
-            _chaseToPlayer = new ChaseToPlayer(ref brain, ref agent, ref _data);
-            _chaseToSoldier = new ChaseToSoldier(ref brain, ref agent, ref _data);
-            _attackToPlayer = new AttackToPlayer(ref brain, ref agent, ref _data);
-            _attackToSoldier = new AttackToSoldier(ref brain, ref agent, ref _data);
+            
+            var stateMap = new Dictionary<EnemyStates, EnemyBaseState>
+            {
+                [EnemyStates.MoveToTurret] = new MoveToTurret(ref brain, ref agent,ref _data),
+                [EnemyStates.ChaseToPlayer] = new ChaseToPlayer(ref brain, ref agent, ref _data),
+                [EnemyStates.ChaseToSoldier] = new ChaseToSoldier(ref brain, ref agent, ref _data),
+                [EnemyStates.AttackToPlayer] = new AttackToPlayer(ref brain, ref agent, ref _data),
+                [EnemyStates.AttackToSoldier] = new AttackToSoldier(ref brain, ref agent, ref _data),
+                [EnemyStates.EnemyDeath] = new EnemyDeath(ref brain, ref agent, ref _data),
+            };
+            _stateMachine = new StateMachine<EnemyStates, EnemyBaseState>(stateMap);
         }
 
         #region Event Subscription
@@ -79,7 +87,7 @@ namespace AIBrain
             SubscribeEvents();
             _health = _data.Health;
             TurretTarget = IdleSignals.Instance.onEnemyHasTarget();
-            _currentState = _moveToTurret;
+            _currentState = _stateMachine.Switch(EnemyStates.MoveToTurret);
             _currentState.EnterState();
         }
 
@@ -135,16 +143,7 @@ namespace AIBrain
 
         public void SwitchState(EnemyStates state)
         {
-            _currentState = state switch
-            {
-                EnemyStates.MoveToTurret => _moveToTurret,
-                EnemyStates.ChaseToPlayer => _chaseToPlayer,
-                EnemyStates.ChaseToSoldier => _chaseToSoldier,
-                EnemyStates.AttackToPlayer => _attackToPlayer,
-                EnemyStates.AttackToSoldier => _attackToSoldier,
-                EnemyStates.EnemyDeath => _enemyDeath,
-                _ => _currentState
-            };
+            _currentState = _stateMachine.Switch(state);
             _currentState.EnterState();
         }
 
