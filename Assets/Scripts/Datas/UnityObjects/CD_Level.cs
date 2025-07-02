@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Datas.ValueObjects;
+using Datas.ValueObjects.Level;
 using UnityEngine;
 
 namespace Datas.UnityObjects

@@ -36,9 +36,9 @@ namespace Managers
             {
                 _payedAmount = value;
                 _remainingAmount = _data.Cost - _payedAmount;
-                if (_remainingAmount <=0)
+                if (_remainingAmount <= 0)
                 {
-                    OutSideSignals.Instance.onOutsideBuyedItems?.Invoke(stageLevel,_payedAmount);
+                    OutSideSignals.Instance.onOutsideBuyedItems?.Invoke(stageLevel, _payedAmount);
                     gameObject.SetActive(false);
                 }
                 else
@@ -56,7 +56,7 @@ namespace Managers
         {
             _textParentGameObject = tmp.transform.parent.gameObject;
         }
-        
+
         #region Event Subscription
 
         private void OnEnable()
@@ -66,12 +66,12 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            OutSideSignals.Instance.onGettedOutSideData += OnSetData;
+            OutSideSignals.Instance.onLoadedOutSideData += OnSetData;
         }
 
         private void UnsubscribeEvents()
         {
-            OutSideSignals.Instance.onGettedOutSideData -= OnSetData;
+            OutSideSignals.Instance.onLoadedOutSideData -= OnSetData;
         }
 
         private void OnDisable()
@@ -80,14 +80,14 @@ namespace Managers
         }
 
         #endregion
-        
+
         private void OnSetData()
         {
             _data = OutSideSignals.Instance.onGetOutsideData(stageLevel);
             PayedAmount = OutSideSignals.Instance.onGetPayedStageData(stageLevel);
             BuyAreaImageChange();
         }
-        
+
         public void BuyAreaEnter()
         {
             _scoreCache = ScoreSignals.Instance.onGetScoreData();
@@ -98,12 +98,14 @@ namespace Managers
                     {
                         _buyCoroutine = StartCoroutine(Buy());
                     }
+
                     break;
-                case PayTypeEnum.Gem :
+                case PayTypeEnum.Gem:
                     if (_scoreCache.GemScore >= _remainingAmount)
                     {
                         _buyCoroutine = StartCoroutine(Buy());
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -115,9 +117,9 @@ namespace Managers
             if (_buyCoroutine == null) return;
             StopCoroutine(_buyCoroutine);
             _buyCoroutine = null;
-            OutSideSignals.Instance.onOutsideBuyedItems?.Invoke(stageLevel,_payedAmount);
+            OutSideSignals.Instance.onOutsideBuyedItems?.Invoke(stageLevel, _payedAmount);
         }
-        
+
         private IEnumerator Buy()
         {
             var waitForSecond = new WaitForSeconds(0.05f);
@@ -127,15 +129,16 @@ namespace Managers
                 ScoreSignals.Instance.onSetScore?.Invoke(_data.PayType, -10);
                 yield return waitForSecond;
             }
+
             _buyCoroutine = null;
-            OutSideSignals.Instance.onOutsideBuyedItems?.Invoke(stageLevel,_payedAmount);
+            OutSideSignals.Instance.onOutsideBuyedItems?.Invoke(stageLevel, _payedAmount);
         }
 
         private void SetText(int remainingAmount)
         {
             tmp.text = remainingAmount.ToString();
         }
-        
+
         private void BuyAreaImageChange()
         {
             _textParentGameObject.transform.GetChild(((int)_data.PayType) + 1).gameObject.SetActive(false);

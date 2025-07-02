@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Datas.ValueObjects.Level;
 using Enums;
-using UnityEngine.Serialization;
 
-namespace Datas.ValueObjects
+namespace Datas.ValueObjects.Level
 {
     [Serializable]
     public class LevelData
     {
         public BaseData BaseData;
         public FrontYardData FrontYardData;
-        public SupporterData SupporterData;
+        public WorkersData WorkersData;
     }
     
     [Serializable]
@@ -30,7 +28,7 @@ namespace Datas.ValueObjects
     }
     
     [Serializable]
-    public class SupporterData
+    public class WorkersData
     {
         public AmmoWorkerBuyData AmmoWorkerBuyData;
         public MoneyWorkerBuyData MoneyWorkerBuyData;
