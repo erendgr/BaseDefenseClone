@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Datas.ValueObjects.Level;
+using Datas.ValueObjects.Player;
 using DG.Tweening;
 using UnityEngine;
 
 namespace Command.Stack
 {
-    public class AddItemToStaticStackCommand
+    public class AddItemToStackCommand
     {
         #region Self Variables
 
@@ -13,22 +13,20 @@ namespace Command.Stack
 
         private List<GameObject> _stackList;
         private GameObject _stackHolder;
-        private StaticStackData _data;
 
         #endregion
 
         #endregion
 
-        public AddItemToStaticStackCommand(ref List<GameObject> stackList, ref StaticStackData stackData,
-            ref GameObject stackHolder)
+        public AddItemToStackCommand(ref List<GameObject> stackList, ref GameObject stackHolder)
         {
             _stackList = stackList;
             _stackHolder = stackHolder;
-            _data = stackData;
         }
 
-        public void Execute(GameObject obj, Vector3 position)
+        public void Execute(GameObject obj, Vector3 position, Transform ammoArea = null)
         {
+            if (ammoArea != null) obj.transform.position = ammoArea.position;
             obj.transform.SetParent(_stackHolder.transform);
             obj.transform.DOLocalMove(position, 1f);
             obj.transform.DOLocalRotate(Vector3.zero, 0.5f);
