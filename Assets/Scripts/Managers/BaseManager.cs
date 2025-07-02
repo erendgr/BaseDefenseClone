@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Datas.UnityObjects;
 using Datas.ValueObjects;
+using Datas.ValueObjects.Level;
 using Enums;
 using Keys;
 using Signals;
@@ -11,13 +13,21 @@ namespace Managers
     {
         #region Self Variables
         
+        #region Serializefield Variables
+        
+        [SerializeField] private GameObject wareHouse;
+        [SerializeField] private GameObject baseCenter;
+
+        #endregion
+        
         #region Private Variables
 
         private AreaDataParams _areaData;
         private Dictionary<RoomNameEnum, int> _payedRoomDatas;
         private Dictionary<TurretNameEnum, int> _payedTurretDatas;
-        public BaseData _data;
-
+        private BaseData _data;
+        private int _baseLevel;
+        
         #endregion
 
         #endregion
@@ -27,7 +37,8 @@ namespace Managers
         private void OnEnable()
         {
             SubscribeEvents();
-
+            _baseLevel = LevelSignals.Instance.onGetLevelID();
+            _data = Resources.Load<CD_Level>("Data/CD_Level").LevelDatas[_baseLevel].BaseData;
             GetReferences();
         }
 
@@ -35,18 +46,24 @@ namespace Managers
         {
             BaseSignals.Instance.onBaseAreaBuyedItem += OnSetPayedRoomData;
             BaseSignals.Instance.onTurretAreaBuyedItem += OnSetPayedTurretData;
-            // BaseSignals.Instance.onTurretData += OnGetTurretData;
-            // BaseSignals.Instance.onPayedTurretData += OnGetTurretPayedAmount;
             SaveSignals.Instance.onGetSavedAreaData += OnGetAreaDatas;
+            IdleSignals.Instance.onGetWareHousePositon += OnGetWareHousePosition;
+            WorkerSignals.Instance.onGetBaseCenter += OnGetBaseCenter;
+            BaseSignals.Instance.onGetSoldierAreaData += OnGetSoldierAreaData;
+            BaseSignals.Instance.onGetMineAreaData += OnGetMineAreaData;
+
         }
 
         private void UnsubscribeEvents()
         {
             BaseSignals.Instance.onBaseAreaBuyedItem -= OnSetPayedRoomData;
             BaseSignals.Instance.onTurretAreaBuyedItem -= OnSetPayedTurretData;
-            // BaseSignals.Instance.onTurretData -= OnGetTurretData;
-            // BaseSignals.Instance.onPayedTurretData -= OnGetTurretPayedAmount;
             SaveSignals.Instance.onGetSavedAreaData -= OnGetAreaDatas;
+            IdleSignals.Instance.onGetWareHousePositon -= OnGetWareHousePosition;
+            WorkerSignals.Instance.onGetBaseCenter -= OnGetBaseCenter;
+            BaseSignals.Instance.onGetSoldierAreaData -= OnGetSoldierAreaData;
+            BaseSignals.Instance.onGetMineAreaData -= OnGetMineAreaData;
+
         }
 
         private void OnDisable()
@@ -63,6 +80,11 @@ namespace Managers
             //SetBaseLevelText();
         }
         
+        private MineAreaData OnGetMineAreaData() => _data.MineAreaData;
+
+        
+        private SoldierAreaData OnGetSoldierAreaData() => _data.SoldierAreaData;
+        
         private void OnSetPayedRoomData(RoomNameEnum room, int payedAmount)
         {
             _payedRoomDatas[room] = payedAmount;
@@ -74,6 +96,8 @@ namespace Managers
             _payedTurretDatas[turret] = payedAmount;
             AreaDataSave();
         }
+        
+        private Transform OnGetWareHousePosition() => wareHouse.transform;
 
         private void AreaDataSave()
         {
@@ -87,5 +111,7 @@ namespace Managers
         }
 
         private AreaDataParams OnGetAreaDatas() => _areaData;
+        
+        private GameObject OnGetBaseCenter() => baseCenter;
     }
 }
