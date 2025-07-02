@@ -59,7 +59,7 @@ namespace Managers
             IdleSignals.Instance.onGetSelectedWeaponAttackAnimState += OnGetWeaponAttackAnimState;
             AttackSignals.Instance.onGetPlayerTarget += OnGetTarget;
             AttackSignals.Instance.onGetBulletDirection += OnGetBulletDirection;
-            IdleSignals.Instance.onPlayerDead += OnPlayerDied;
+            IdleSignals.Instance.onPlayerDied += OnPlayerDied;
         }
 
         private void UnsubscribeEvents()
@@ -69,7 +69,7 @@ namespace Managers
             IdleSignals.Instance.onGetSelectedWeaponAttackAnimState -= OnGetWeaponAttackAnimState;
             AttackSignals.Instance.onGetPlayerTarget -= OnGetTarget;
             AttackSignals.Instance.onGetBulletDirection -= OnGetBulletDirection;
-            IdleSignals.Instance.onPlayerDead -= OnPlayerDied;
+            IdleSignals.Instance.onPlayerDied -= OnPlayerDied;
         }
 
         protected override void OnDisable()
@@ -133,7 +133,7 @@ namespace Managers
             RadiusCollider.enabled = true;
             
             PoolType poolType = (PoolType) Enum.Parse(typeof(PoolType), _selectedWeaponType.ToString());
-            _weapon = PoolSignals.Instance.onDequeuePoolableGameObjectWithTransform(poolType, weaponHolder.transform);
+            _weapon = PoolSignals.Instance.onDequeuePoolableGOWithTransform(poolType, weaponHolder.transform);
             _weapon.transform.SetParent(weaponHolder.transform);
             _weapon.transform.localRotation = _weaponRotation;
             _firePoint = _weapon.transform.Find("FirePoint");
@@ -147,7 +147,7 @@ namespace Managers
 
         protected override void ExecuteAttack()
         {
-            PoolSignals.Instance.onDequeuePoolableGameObjectWithTransform(PoolType.Bullet, _firePoint);
+            PoolSignals.Instance.onDequeuePoolableGOWithTransform(PoolType.Bullet, _firePoint);
         }
 
         protected override void StopAttack()

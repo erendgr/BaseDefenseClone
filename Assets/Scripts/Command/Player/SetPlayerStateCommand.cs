@@ -51,7 +51,7 @@ namespace Command.Player
                     _movementController.IsReadyToPlay(false);
                     _animationController.SetBoolAnimState(PlayerAnimState.BaseState, true);
                     _animationController.SetBoolAnimState(weaponAnimState, false);
-                    //_manager.PlayerDeath();
+                    _manager.PlayerDeath();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

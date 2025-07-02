@@ -1,7 +1,9 @@
-﻿using Command.Player;
+﻿using System.Collections;
+using Command.Player;
 using Controllers.Player;
 using Datas.UnityObjects;
 using Datas.ValueObjects.Player;
+using DG.Tweening;
 using Enums;
 using Keys;
 using Signals;
@@ -19,12 +21,16 @@ namespace Managers
         [SerializeField] private PlayerAnimationController animationController;
         [SerializeField] private PlayerPhysicsController physicsController;
         [SerializeField] private PlayerHealthController healthController;
+        [SerializeField] private GameObject playerPhysics;
+        [SerializeField] private PlayerStackPhysicsController stackPhysicsController;
+        [SerializeField] private GameObject mesh;
 
         #endregion
 
         #region Private Variables
 
         private PlayerData _data;
+        private Coroutine _death;
         private Transform _currentParent;
         private const string PlayerDataPath = "Data/CD_Player";
         private PlayerStates _playerState;
@@ -162,6 +168,39 @@ namespace Managers
                 _weaponAnimState = IdleSignals.Instance.onGetSelectedWeaponAnimState();
             }
             _setPlayerStateCommand.Execute(state, _weaponAnimState);
+        }
+        
+        public void PlayerDeath()
+        {
+            _death ??= StartCoroutine(Death());
+        }
+
+        private IEnumerator Death()
+        {
+            DeathStart();
+            yield return new WaitForSeconds(3f);
+            DeathEnd();
+            _death = null;
+        }
+
+        private void DeathStart()
+        {
+            playerPhysics.layer = LayerMask.NameToLayer("Default");
+            stackPhysicsController.isEnable = false;
+            IdleSignals.Instance.onPlayerDied?.Invoke();
+            animationController.SetAnimState(PlayerAnimState.Death);
+            mesh.transform.DOLocalMoveY(-0.5f, 0.5f);
+        }
+        
+        private void DeathEnd()
+        {
+            transform.position = WorkerSignals.Instance.onGetBaseCenter().transform.position;
+            stackPhysicsController.isEnable = true;
+            animationController.SetAnimState(PlayerAnimState.Reborn);
+            mesh.transform.localPosition = Vector3.zero;
+            movementController.IsReadyToPlay(true);
+            SetPlayerState(PlayerStates.Inside);
+            healthController.GetHealth(_data.PlayerHealth);
         }
     }
 }
