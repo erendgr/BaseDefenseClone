@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _ObjectPooling.Scripts.Data.UnityObjects;
 using _ObjectPooling.Scripts.Enums;
@@ -47,22 +48,34 @@ namespace _ObjectPooling.Scripts.Managers
         private void SubscribeEvents()
         {
             PoolSignals.Instance.onDequeuePoolableGameObject += OnDequeuePoolableGameObject;
-            PoolSignals.Instance.onDequeuePoolableGameObjectWithTransform += OnDequeuePoolableGameObjectWithTransform;
+            PoolSignals.Instance.onDequeuePoolableGOWithTransform += OnDequeuePoolableGOWithTransform;
             PoolSignals.Instance.onEnqueuePooledGameObject += OnEnqueuePooledGameObject;
             
         }
 
-        private GameObject OnDequeuePoolableGameObjectWithTransform(PoolType poolType, Transform transform)
+        private GameObject OnDequeuePoolableGOWithTransform(PoolType poolType, Transform transform)
         {
             if (!_poolableObjectList.ContainsKey(poolType))
             {
                 Debug.LogError($"Dictionary does not contain this key: {poolType}...");
                 return null;
             }
-
-            var deQueuedPoolObject = _poolableObjectList[poolType].Dequeue();
+            
+            GameObject deQueuedPoolObject = null;
+            try
+            {
+                deQueuedPoolObject = _poolableObjectList[poolType].Dequeue();
+            }
+            catch (InvalidOperationException)
+            {
+                var prefab = data.PoolList[poolType].Prefab;
+                deQueuedPoolObject = Instantiate(prefab, poolParent);
+                _poolableObjectList[poolType].Enqueue(deQueuedPoolObject);
+                deQueuedPoolObject = _poolableObjectList[poolType].Dequeue();
+            }
+            
             deQueuedPoolObject.transform.position = transform.position;
-            if (deQueuedPoolObject.activeSelf) OnDequeuePoolableGameObjectWithTransform(poolType, transform);
+            if (deQueuedPoolObject.activeSelf) OnDequeuePoolableGOWithTransform(poolType, transform);
             deQueuedPoolObject.SetActive(true);
             return deQueuedPoolObject;
         }
@@ -96,6 +109,8 @@ namespace _ObjectPooling.Scripts.Managers
         {
             PoolSignals.Instance.onDequeuePoolableGameObject -= OnDequeuePoolableGameObject;
             PoolSignals.Instance.onEnqueuePooledGameObject -= OnEnqueuePooledGameObject;
+            PoolSignals.Instance.onDequeuePoolableGOWithTransform -= OnDequeuePoolableGOWithTransform;
+
         }
 
         private void OnDisable()
