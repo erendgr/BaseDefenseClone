@@ -5,6 +5,7 @@ using _ObjectPooling.Scripts.Enums;
 using _ObjectPooling.Scripts.Signals;
 using Datas.ValueObjects.Level;
 using Managers;
+using Signals;
 using UnityEngine;
 
 namespace Controllers.Turret
@@ -38,6 +39,7 @@ namespace Controllers.Turret
             _managerStackList = managerStackList;
             _data = data;
             _delay = new WaitForSeconds(data.Delay);
+            WorkerSignals.Instance.onTurretAmmoAreas?.Invoke(gameObject, managerStackList);
         }
 
         public void AddAmmoToStack(List<GameObject> ammoBoxes)
@@ -67,6 +69,7 @@ namespace Controllers.Turret
                 yield return _delay;
             }
 
+            WorkerSignals.Instance.onAmmoAreaFull?.Invoke(gameObject);
             _addStack = null;
         }
 

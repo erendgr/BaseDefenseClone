@@ -20,10 +20,10 @@ namespace Signals
         public Func<AreaDataParams> onGetSavedAreaData = delegate { return default; };
 
         public UnityAction onOutSideDataSave = delegate { };
-        public Func<Dictionary<OutSideStateLevels, int>> onGetSavedOutsideData = delegate { return default; };
+        public Func<Dictionary<OutSideStateLevels, int>> onGetOutsideData = delegate { return default; };
 
-        public UnityAction onSupporterDataSave = delegate { };
-        public Func<SupporterBuyableDataParams> onGetSavedSupportData = delegate { return default; };
+        public UnityAction onWorkerDataSave = delegate { };
+        public Func<SupporterBuyableDataParams> onGetSavedWorkerData = delegate { return default; };
 
         //load
         public Func<int> onLoadCurrentLevel = delegate { return 0; };

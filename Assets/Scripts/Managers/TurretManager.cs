@@ -47,7 +47,7 @@ namespace Managers
         public GameObject Target;
 
         public GetStaticStackItemPosCommand GetItemPosCommand;
-        public AddItemToStaticStackCommand AddToStackCommand;
+        public AddItemToStackCommand AddToStackCommand;
 
         #endregion
 
@@ -63,7 +63,7 @@ namespace Managers
             GetItemPosCommand =
                 new GetStaticStackItemPosCommand(ref _ammoStack, ref _data.TurretStackData, ref ammoHolder);
             AddToStackCommand =
-                new AddItemToStaticStackCommand(ref _ammoStack, ref _data.TurretStackData, ref ammoHolder);
+                new AddItemToStackCommand(ref _ammoStack, ref ammoHolder);
         }
 
         private TurretData GetTurretData() => Resources.Load<CD_Turret>("Data/CD_Turret").TurretData;

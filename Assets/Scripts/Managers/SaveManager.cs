@@ -35,7 +35,7 @@ namespace Managers
             SaveSignals.Instance.onScoreSave += OnScoreSave;
             SaveSignals.Instance.onAreaDataSave += OnAreaDataSave;
             SaveSignals.Instance.onOutSideDataSave += OnOutsideStageDataSave;
-            SaveSignals.Instance.onSupporterDataSave += OnSupporterDataSave;
+            SaveSignals.Instance.onWorkerDataSave += OnSupporterDataSave;
             SaveSignals.Instance.onLoadCurrentLevel += OnLoadLevel;
             SaveSignals.Instance.onLoadScoreData += OnLoadScoreData;
             SaveSignals.Instance.onLoadAreaData += OnLoadAreaData;
@@ -53,7 +53,7 @@ namespace Managers
             SaveSignals.Instance.onLoadScoreData -= OnLoadScoreData;
             SaveSignals.Instance.onLoadAreaData -= OnLoadAreaData;
             SaveSignals.Instance.onLoadOutsideData -= OnLoadOutsideStageData;
-            SaveSignals.Instance.onSupporterDataSave -= OnSupporterDataSave;
+            SaveSignals.Instance.onWorkerDataSave -= OnSupporterDataSave;
             SaveSignals.Instance.onLoadSupporterData -= OnLoadSupporterData;
         }
 
@@ -98,7 +98,7 @@ namespace Managers
 
         private void OnOutsideStageDataSave()
         {
-            _outsideDataCache = SaveSignals.Instance.onGetSavedOutsideData();
+            _outsideDataCache = SaveSignals.Instance.onGetOutsideData();
             if (_outsideDataCache != null) ES3.Save("OutsidePayedAmount", _outsideDataCache, "OutsideData.es3");
         }
 
@@ -106,8 +106,8 @@ namespace Managers
         {
             _supporterBuyableDataCache = new SupporterBuyableDataParams()
             {
-                AmmoWorkerPayedAmount = SaveSignals.Instance.onGetSavedSupportData().AmmoWorkerPayedAmount,
-                MoneyWorkerPayedAmount = SaveSignals.Instance.onGetSavedSupportData().MoneyWorkerPayedAmount
+                AmmoWorkerPayedAmount = SaveSignals.Instance.onGetSavedWorkerData().AmmoWorkerPayedAmount,
+                MoneyWorkerPayedAmount = SaveSignals.Instance.onGetSavedWorkerData().MoneyWorkerPayedAmount
             };
             if (_supporterBuyableDataCache.AmmoWorkerPayedAmount != 0)
                 ES3.Save("AmmoWorkerPayedAmount",
