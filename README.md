@@ -26,25 +26,25 @@ Veriler, **Single Responsibility** ve **Open/Closed prensiplerine** uygun olarak
 Bu sayede sistem, hem editor üzerinden kolayca düzenlenebilir hem de yeni veri tipleri için sürdürülebilir ve genişletilebilir hale getirildi.
 ---
 
-## Kayıt Sistemi
+## Save Sistemi
 > Oyundaki tüm veri kayıt işlemleri için **Easy Save 3** eklentisi kullanıldı.  
 Sistem, **persistent data** yönetimini sadeleştirirken, özelleştirilebilir veri formatları sayesinde modüler ve genişletilebilir bir yapı sağladı.
 ---
 
-## Kamera Sistemi
+## Kamera
 > Kamera sistemi olarak Unity’nin güçlü **Cinemachine** kütüphanesi tercih edildi.
 ---
 
-## Animasyon Sistemi
+## Animasyon
 > Animasyon işlemleri için **DOTween Pro** kullanıldı.  
 Tween akışlarıyla birlikte UI ve obje animasyonları performanslı ve kontrol edilebilir hale getirildi.
 ---
 
-## UI Tasarım Sistemi
+## UI Tasarım
 > Kullanıcı arayüzü tasarımlarında **GUI Mobile Hyper-Casual** ve **GUI PRO Kit – Casual Game** paketleri kullanıldı.  
 Bu sayede arayüzler mobil odaklı, sade ve kullanıcı dostu bir yapıya kavuştu.
 ---
 
-## Görsel Stil & Polish
+## Polish
 > Projenin görsel kalitesini artırmak için **BOXOPHOBIC (Skybox)**, **Toony Colors Pro 2** ve **MK Toon – Stylized Shader** kullanıldı.
 ---
