@@ -1678,7 +1678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5248005831508224639
 Transform:
   m_ObjectHideFlags: 0
@@ -9926,6 +9926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1215152237727210942}
   - component: {fileID: 2929363617502311863}
+  - component: {fileID: 8590731198342050610}
   m_Layer: 0
   m_Name: GemAreaPhysics
   m_TagString: Untagged
@@ -9971,6 +9972,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.4454236, y: 0.49270466, z: 2.183689}
   m_Center: {x: -0.2211287, y: 0.25364769, z: 0.17560196}
+--- !u!114 &8590731198342050610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710629417662473443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159760cc234e481daa88031b0e86ab99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 819759801134235633}
 --- !u!1 &1722426369794927639
 GameObject:
   m_ObjectHideFlags: 0
@@ -15787,6 +15801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3242928504927876291}
+  - component: {fileID: 819759801134235633}
   m_Layer: 0
   m_Name: GemArea
   m_TagString: Untagged
@@ -15814,6 +15829,24 @@ Transform:
   - {fileID: 1215152237727210942}
   m_Father: {fileID: 3120659159887497892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &819759801134235633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2556520287997367897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfccf699245543e8b9180b9f7fc7262e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp: {fileID: 5238414345013373583}
+  gemAreaHolder: {fileID: 4806818135215902470}
+  mines:
+  - {fileID: 5761015853879537757}
+  - {fileID: 3073673658414506399}
+  - {fileID: 2337233988814947691}
 --- !u!1 &2570479371891371118
 GameObject:
   m_ObjectHideFlags: 0
@@ -23440,6 +23473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1494945703935663854}
+  - component: {fileID: 7011459545265533834}
   m_Layer: 0
   m_Name: SoldierArea
   m_TagString: Untagged
@@ -23470,6 +23504,27 @@ Transform:
   - {fileID: 5967546566018039472}
   m_Father: {fileID: 4772184584776653101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7011459545265533834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3922870306894217501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52eb5b530821429b8ca0a466baefd646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp: {fileID: 9074385002012184052}
+  soldierBarrackFrontDoor: {fileID: 2785202755831891290}
+  soldierBarrackBackDoor: {fileID: 4958356268538733911}
+  soldierSearchPosition: {fileID: 3253080144174639165}
+  soldierInitPositions:
+  - {fileID: 1152164033116702434}
+  - {fileID: 8508446156015048320}
+  - {fileID: 1465361968553927601}
+  - {fileID: 6672196544476819088}
 --- !u!1 &3934509687402456823
 GameObject:
   m_ObjectHideFlags: 0
@@ -34168,6 +34223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7386068903220956394}
   - component: {fileID: 2888381705863122197}
+  - component: {fileID: 4353311576121808394}
   m_Layer: 0
   m_Name: Physics
   m_TagString: GemHolder
@@ -34211,6 +34267,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9937372, y: 0.5004022, z: 3.0072756}
   m_Center: {x: -0.009451389, y: 0.24979888, z: 0.0006804466}
+--- !u!114 &4353311576121808394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117687008497808938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1112513704904091a10d17c226740fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 819759801134235633}
 --- !u!1 &6121450698175043071
 GameObject:
   m_ObjectHideFlags: 0
@@ -35746,6 +35815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6533448963307367310}
   - component: {fileID: 8000036784539998818}
+  - component: {fileID: 5006333886191492383}
   m_Layer: 0
   m_Name: SoldierAreaPhysics
   m_TagString: Untagged
@@ -35791,6 +35861,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.4454236, y: 0.49270466, z: 2.183689}
   m_Center: {x: -0.2211287, y: 0.25364769, z: 0.17560196}
+--- !u!114 &5006333886191492383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353444077736119925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa6214979c4462398ed1219947b6159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 7011459545265533834}
 --- !u!1 &6360251863193090444
 GameObject:
   m_ObjectHideFlags: 0
@@ -44544,22 +44627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wareHouse: {fileID: 9160926444381075170}
   baseCenter: {fileID: 4428824565924762198}
-  _data:
-    BaseRoomData:
-      Rooms: []
-    MineAreaData:
-      MaxWorkerAmound: 0
-      CurrentWorkerAmound: 0
-      MaxWorkerFromMine: 0
-      StaticStackData:
-        Capacity: 0
-        InitPosition: {x: 0, y: 0, z: 0}
-        StackCountX: 0
-        StackCountZ: 0
-        StackOffset: {x: 0, y: 0, z: 0}
-        Delay: 0
-    SoldierAreaData:
-      MaxWorkerAmount: 0
 --- !u!1 &7724705736035992193
 GameObject:
   m_ObjectHideFlags: 0
@@ -48626,6 +48693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3594203647037319496}
   - component: {fileID: 1209462138106467502}
+  - component: {fileID: 6234267472348295364}
   m_Layer: 0
   m_Name: Physics
   m_TagString: GemHolder
@@ -48669,6 +48737,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9937372, y: 0.5004022, z: 1.504461}
   m_Center: {x: -0.009451389, y: 0.24979888, z: 0.0006804466}
+--- !u!114 &6234267472348295364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227617594045493399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b0061524544bb39ce45fe3b191a7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8227854973580842215
 GameObject:
   m_ObjectHideFlags: 0
@@ -52829,7 +52909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7681336343599628739
 Transform:
   m_ObjectHideFlags: 0
@@ -54983,6 +55063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8931634638082985940, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
+      propertyPath: turretName
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55173,6 +55257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8931634638082985940, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
+      propertyPath: turretName
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55235,6 +55323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8931634638082985940, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
+      propertyPath: turretName
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55296,6 +55388,10 @@ PrefabInstance:
     - target: {fileID: 5814422339483216282, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
       propertyPath: m_Name
       value: TurretManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931634638082985940, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
+      propertyPath: turretName
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55486,6 +55582,10 @@ PrefabInstance:
     - target: {fileID: 5814422339483216282, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
       propertyPath: m_Name
       value: TurretManager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931634638082985940, guid: 7b0a8e8b70782964ea6aaf794da0adfa, type: 3}
+      propertyPath: turretName
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
