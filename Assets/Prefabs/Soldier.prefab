@@ -530,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1264345240885296879
 Transform:
   m_ObjectHideFlags: 0
@@ -631,12 +631,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusCollider: {fileID: 3418827880623391080}
-  SearchInitPosition: {fileID: 0}
-  Target: {fileID: 0}
   agent: {fileID: 4569612118838348806}
   animator: {fileID: 3180070652898257006}
   weapon: {fileID: 8866373534354167698}
   firePoint: {fileID: 4321620198688573062}
+  SearchInitPosition: {fileID: 0}
+  Target: {fileID: 0}
 --- !u!1 &2517336037437164605
 GameObject:
   m_ObjectHideFlags: 0

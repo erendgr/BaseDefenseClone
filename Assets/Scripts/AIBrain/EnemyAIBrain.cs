@@ -46,18 +46,7 @@ namespace AIBrain
         private int _health;
         private float _timer;
         private StateMachine<EnemyStates, EnemyBaseState> _stateMachine;
-
-        #region Status
-
         private EnemyBaseState _currentState;
-        private MoveToTurret _moveToTurret;
-        private ChaseToPlayer _chaseToPlayer;
-        private ChaseToSoldier _chaseToSoldier;
-        private AttackToPlayer _attackToPlayer;
-        private AttackToSoldier _attackToSoldier;
-        private EnemyDeath _enemyDeath;
-
-        #endregion
 
         #endregion
 

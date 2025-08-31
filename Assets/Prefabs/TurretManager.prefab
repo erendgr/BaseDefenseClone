@@ -2724,13 +2724,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusCollider: {fileID: 1977126304103263983}
-  EnemyList: []
-  Target: {fileID: 0}
   ammoHolder: {fileID: 794335041841623070}
   barrelPoint: {fileID: 6596461864661861773}
   turretAmmoAreaController: {fileID: 7415422619484316390}
   turretBot: {fileID: 2376983831602048570}
   movementController: {fileID: 1971330007599883334}
+  EnemyList: []
+  Target: {fileID: 0}
 --- !u!114 &1971330007599883334
 MonoBehaviour:
   m_ObjectHideFlags: 0
